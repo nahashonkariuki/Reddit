@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./reddit-logo.png" type="image/x-icon">
+    <title>reddit</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        .authContainer {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            position: relative;
+            top:0;
+           
+        }
+        .form1Container {
+            width: 400px;
+            height: 360px;
+            border: 3px solid rgb(242,65, 0);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 50px;
+            background-color: white;
+            justify-content: space-evenly;
+            padding: 8px;
+            border-radius: 25px;
+
+        }
+        .form2Container {
+            width: 400px;
+            height: 360px;
+            border: 3px solid rgb(242,65, 0);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 50px;
+            background-color: white;
+            justify-content: space-evenly;
+            padding: 8px;
+            border-radius: 25px;
+
+        }
+        .h1Class {
+            width: 100%;
+            text-align: center;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            font-size:medium;
+            color: rgb(242,65, 0);
+        }
+        label {
+            padding-left: 20px;
+        }
+        input {
+            width: 90%;
+        }
+        .h5Class {
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            position: absolute;
+            bottom: 20px;
+            color: rgb(14, 13, 13);
+        }
+        .h5Class span {
+            color: rgb(12, 12, 12);
+        }
+        button {
+            margin-top: 20px;
+            margin-left: 40px;
+            width: 80%;
+            border-radius: 25px;
+            padding-block: 5px;
+            background-color:rgb(167, 164, 164);
+            
+            
+        }
+    </style>
+</head>
+<body>
+     <!--Start Nav Bar-->
+     <nav style="position: sticky; top: 0; z-index: 50;" class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"> <img src="./reddit.png" alt="" srcset="" style="width: 100px; height: 50px"> <h1 id="app-title"><i>where life happens</i></h1></a>
+          
+          
+        </div>
+      </nav>
+    <div class="authContainer">
+        <div class="form1Container">
+        <form class="form1">
+            <h1 class="h1Class">Log in</h1>
+            <label for="email">Email</label>
+            <input placeholder="email@gmail.com" style="width: 90%" class="form-control" type="text" name="email" required/>
+            <div class="email error"></div>
+            <label for="password">Password</label>
+            <input placeholder="password" autocomplete="on" style="width: 90%" class="form-control" type="password" name="password" required/>
+            <div class="password error"></div>
+            <button class="btn-info" >Log in</button>
+        </form>
+        <h5 class="h5Class" id="switchDivs1">Don't have an account? <span>Sign up.</span></h5>
+    </div>
+    
+
+
+
+
+<div class="form2Container">
+        <form class="form2">
+            <h1 class="h1Class">Sign up</h1>
+            <label for="email">Email</label>
+            <input placeholder="email@gmail.com" style="width: 90%" class="form-control" type="text" name="email" required/>
+            <div class="email error"></div>
+            <label for="password">Password</label>
+            <input placeholder="password" autocomplete="on" style="width: 90%" class="form-control" type="password" name="password" required/>
+            <div class="password error"></div>
+            <br>
+            <button class="btn-info">Sign Up</button>
+        </form>
+        <h5 class="h5Class" id="switchDivs2">Already have an account? <span>Log in.</span></h5>
+    </div>
+
+
+
+
+    </div>
+    
+
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    
+    <script>
+        ///
+        window.onload = () => {
+            document.querySelector(".form2Container").style.display = "none";
+        }
+        ///
+        ///
+        document.getElementById("switchDivs1").addEventListener("click",() => {
+            document.querySelector(".form1Container").style.display = "none";
+            document.querySelector(".form2Container").style.display = "block";
+        });
+        document.getElementById("switchDivs2").addEventListener("click",() => {
+            document.querySelector(".form1Container").style.display = "block";
+            document.querySelector(".form2Container").style.display = "none";
+        });
+        ///
+        const form = document.querySelector('.form1');
+        form.addEventListener('submit',async (e) => {
+            e.preventDefault();
+           
+            const email = form.email.value;
+            const password = form.password.value;
+            try {
+               await axios.post('api/auth/login', {email, password}).then(async res=> {
+                    const data = res.data;
+                    if(data) {
+                        await axios.get('/landingpage').then(d=>{
+                            window.location = '/secretPage.html';
+                        });
+                    };
+                }).catch(e=>new Error(e));
+                
+                
+    
+            } catch (error) {
+                console.log(error);
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        const form2 = document.querySelector('.form2');
+    form2.addEventListener('submit',async (e) => {
+        e.preventDefault();
+        const email = form2.email.value;
+        const password = form2.password.value;
+        console.log(email, password);
+        try {
+            await axios.post('api/auth/signup', {email, password}).then(async res=>{
+                const data = res.data;
+                if(data) {
+                        await axios.get('/landingpage').then(d=>{
+                            window.location = '/secretPage.html';
+                        });
+                    };
+            });
+            
+
+        } catch (error) {
+            console.log(error);
+        }
+    });
+    </script>
+    <script src="https://kit.fontawesome.com/4428c57911.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./bootstrap/bootstrap.min.js"></script>
+    
+</body>
+</html>

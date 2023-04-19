@@ -1,0 +1,138 @@
+.posts-container-view {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    }
+#view-post {
+    width: 1100px;
+    height: 200px;
+    background-color: aquamarine;
+    overflow: auto;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    box-shadow: 0 0 4px 4px black;
+    transition: all .3s linear;
+}
+#view-post:hover {
+    box-shadow: 0 0 2px 2px white;
+}
+.votes-container {
+    width: 20%;
+    height: 100%;
+    overflow: scroll;
+}
+.post-content {
+    width: 80%;
+    height: 100%;
+    background-color: rgb(25, 29, 29);
+    color: white;
+    /* overflow: scroll; */
+    position: relative;
+    margin-left: 10px;
+}
+
+.post-content2 {
+    width: 80%;
+    height: 100%;
+    background-color: rgb(25, 29, 29);
+    color: white;
+    overflow: scroll;
+    position: relative;
+    margin: 20px auto;
+    cursor: pointer;
+    padding: 10px;
+
+
+}
+
+
+#viewSinglePost {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 500vh;
+    background-color: black;
+    z-index: 2000;
+    display:none;
+}
+#viewSinglePost button {
+    position: fixed;
+    top:0;
+    right: 20px;
+    width: 200px;
+    height: 50px;
+    border: 1px solid white;
+}
+#viewComments {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 500vh;
+    background-color: rgb(255, 255, 255);
+    z-index: 2000;
+    display:none;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+#viewComments button {
+    position: fixed;
+    top:0;
+    right: 20px;
+    width: 200px;
+    height: 50px;
+    border: 1px solid black;
+}
+i {
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    padding-top: 5px;
+    font-size: 3em;
+}
+i:hover {
+    background-color: rgb(35, 116, 116);
+    color: black;
+}
+.votes-count {
+    width: 100%;
+    height: 60px;
+    font-size: 1.8em;
+    box-shadow: 0 0 2px 2px black;
+    overflow: hidden;
+    text-align: center;
+    border: 1px;
+    border-color: black;
+}
+.post-comments {
+    width: 100%;
+    height: 50px;
+    border: 1px;
+    box-shadow: 0 0 2px 2px black;
+
+    border-color: black;
+}
+.post-comments p {
+    width: 100%;
+    height: 150%;
+    font-size: 1.4em;
+    overflow-y: hidden;
+    /* overflow-x: scroll; */
+    white-space: nowrap;
+    padding: 10px;
+}
+.post-comments p:hover {
+    background-color: rgb(35, 116, 116);
+    color: black;
+}
+.post-comments p i {
+    font-size: 1em;
+    color: white;
+}
+
+#create-comment-id2 {
+    margin: 50px auto;
+}
